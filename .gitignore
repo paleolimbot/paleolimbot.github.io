@@ -1,2 +1,11 @@
+_site
+.sass-cache
+.jekyll-metadata
+
+tutorial/.DS_Store
+
+tutorial/basemapseh/.DS_Store
+
+tutorial/basemapseh/data/.DS_Store
 
 .DS_Store
