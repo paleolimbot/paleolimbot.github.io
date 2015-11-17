@@ -10,7 +10,7 @@ The R packages {rcanvec}, {rosm} and {prettymapr} are all about creating simple,
 ## Install the packages
 See if you can install the packages - they're on CRAN and should be available for most verions of R. Updating R is a pain, but it may be what you have to do to make sure you can install the packages.
 
-```r
+```
 install.packages("prettymapr")
 install.packages("rosm")
 install.packages("rcanvec")
