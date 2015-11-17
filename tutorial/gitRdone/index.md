@@ -10,8 +10,7 @@ layout: page
 ## Avoid copy & paste (or *modularizing* your code)
 I undestand better than anybody that when you sit down to write code the first thing you have to do is *just make it work*. While you're doing that, copy and paste all you want! Until you have something that works, there's nothing worth using in the future anyway. As an example we'll take some secchi depth data from a two lakes near Halifax, Nova Sotia and plot it.
 
-```
-{% highlight R %}
+```R
 sddata <- read.delim("secchi_depth_data.txt")
 
 # get first lake data
@@ -29,13 +28,11 @@ title("First Lake Secchi Depth")
 plot(secondlakedata$date, secondlakedata$sd, pch=18, xlab="Date", 
      ylab="Secchi Depth")
 title("Second Lake Secchi Depth")
-{% endhighlight %}
 ```
 
 You'll notice that in plotting the data for both lakes, **the code to plot the first lake is the same as the code to plot the second** (only the name of the lake is different). This bad for a few reasons: every time I change the code to plot the data for one lake I have to make a nearly identical change in some other line of code. Not only is this time consuming (imagine if you had 30 lakes), it's a great way to introduce errors into your project. The reason you can tell immediately that this was a bad move: **I had to copy and paste my code, then change it slightly**. Any time you run into this problem, consider making a function.
 
-```
-{% highlight R %}
+```R
 sddata <- read.delim("secchi_depth_data.txt")
 
 # define function to plot data
@@ -49,15 +46,13 @@ plot_secchi_depths <- function(lakename) {
 # call function with both lake names
 plot_secchi_depths("First Lake")
 plot_secchi_depths("Second Lake")
-{% endhighlight %}
 ```
 
 With two lakes it doesn't make much of a difference, but it saves a whole lot of work the more times you have to copy and paste something. What if you wanted to change the title of each plot? It's a simple example, but you can see how we're working towards code that can easily be reused as opposed to code specific to your project.
 
 Taking it a step further, we can *parameterize* the function, so we can customize each call we make to the function.
 
-```
-{% highlight R %}
+```R
 sddata <- read.delim("secchi_depth_data.txt")
 
 # define function to plot data
@@ -71,13 +66,11 @@ plot_secchi_depths <- function(lakename, pch=18, col="black") {
 # call function with both lake names
 plot_secchi_depths("First Lake", col="green")
 plot_secchi_depths("Second Lake", col="red")
-{% endhighlight %}
 ```
 
 If we wanted to make the function completely self-contained, we could also pass our original `data.frame` as an argument, so that not only could we use the function in this script, but we could use the function in *any* script that had a `sd` column and a `date` column.
 
 ```
-{% highlight R %}
 sddata <- read.delim("secchi_depth_data.txt")
 
 # define function to plot data
@@ -91,7 +84,6 @@ plot_secchi_depths <- function(alldata, lakename, pch=18, col="black") {
 # call function with both lake names
 plot_secchi_depths("First Lake", col="green")
 plot_secchi_depths("Second Lake", col="red")
-{% endhighlight %}
 ```
 
 You can see now that **we've created code that we could literally drop straight into another project without changing a single line of code** (provided we've formatted the data in the same way). This is a very simple example, but I have many plotting functions that I use over and over again when working on similar projects. I almost never get away with leaving a function completely untouched (there's always *something* I didn't think of when I wrote the function the first time), but **because I took the time to split my code into re-usable parts, I saved tons of time**. You'll hear this also called *modularizing* your code.
