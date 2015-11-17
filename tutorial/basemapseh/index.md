@@ -7,7 +7,7 @@ layout: page
 
 The R packages {rcanvec}, {rosm} and {prettymapr} are all about creating simple, easy-to-read maps without spending too much time finding data to use as a basemap. If you're writing a thesis, think about it as Figure 1 (where in the world is your study site) and Figure 2 (here's my study site). This tutorial is designed as a primer to highlight the basic functions of these three packages - for more detailed information see the PDF manuals for [rcanvec](https://github.com/paleolimbot/rcanvec/files/15517/rcanvec_0.1.3-manual.pdf), [rosm](https://github.com/paleolimbot/rosm/files/16812/rosm_0.1.2-manual.pdf), and [prettymapr](https://github.com/paleolimbot/prettymapr/files/11433/prettymapr_0.1.1-manual.pdf). Feel free to follow along using [tutorial.R](tutorial.R) or [tutorial_answers.R](tutorial_answers.R). Also, consider supporting R package development by [giving me money](http://apps.fishandwhistle.net/donate) (I'm a starving grad student, I promise).
 
-##Install the packages
+## Install the packages
 See if you can install the packages - they're on CRAN and should be available for most verions of R. Updating R is a pain, but it may be what you have to do to make sure you can install the packages.
 
 ```R
@@ -17,7 +17,7 @@ install.packages("rcanvec")
 ```
 Later on you'll also need some data, which you can find in the [tutorial notes](rcanvec_tutorial.zip).
 
-##Base plotting
+## Base plotting
 
 Part of being easy to use means these packages work well with the {sp} package, or any other package that uses base plotting in R (e.g. {marmap}, {cartography}, {OpenStreetMap}). Because of this, it's worth taking a look at how to use the `plot()` function and a few related methods. First, we'll setup the data we'll use in our examples.
 
@@ -28,7 +28,7 @@ ys <- c(45.06345, 45.08933, 45.09176)
 mylabels <- c("Graveyard", "Huggins", "TAN")
 ```
 
-###plot()
+### plot()
 The `plot(x, y)` command creates a new plot and plots its arguments as points. Usually {rcanvec} or {rosm} will take care of creating the initial plot, but it's worth knowing that behind the scenes, this is what's happening. You can use `xlim=c(X, X)`, and `ylim=c(X, X)` to change the extents of the plot.
 
 ```R
@@ -37,7 +37,7 @@ plot(xs, ys)
 ```
 Now that we have our basic plot, we'll use a few other functions to draw on top of the plot we have just created.
 
-###points()
+### points()
 It's a bit redundant to add points on top of the ones we've just created, but often you'll want to add points to a plot without creating a new one. The syntax is exactly the same as for `plot()`. Use `cex` (or **c**haracter **ex**pantion factor) to make your points bigger, `pch` (or '**p**lotting **ch**aracter'; see this [Quick-R](http://www.statmethods.net/advgraphs/parameters.html) page for options) to change the symbol, or `col` to change the **col**our (try "black", "white", "#554499", etc.).
 
 ```R
@@ -45,7 +45,7 @@ It's a bit redundant to add points on top of the ones we've just created, but of
 points(xs, ys, pch=2)
 ```
 
-###arrows()
+### arrows()
 This does exactly what you'd think: draw an arrow from `x1, y1` to `x2, y2`. Use the `length` argument to make the arrows bigger or smaller (in inches).
 
 ```R
@@ -53,21 +53,21 @@ This does exactly what you'd think: draw an arrow from `x1, y1` to `x2, y2`. Use
 arrows(xs[1], ys[1], xs[2], ys[2])
 ```
 
-###lines()
+### lines()
 If you'd like to connect your points with lines, the `lines()` function is for you! In addition to the `col` argument, we can also pass `lwd` (**l**ine **w**i**d**th; try from 0.5 to 2), or `lty` (**l**ine **ty**pe; you can pick [any number from 0 to 6](http://www.statmethods.net/advgraphs/parameters.html)).
 ```R
 #add lines from the graveyard to huggins to TAN.
 lines(xs, ys)
 ```
 
-###text()
+### text()
 Labels are often useful, and adding them to the map is no problem. Use `cex` to control font size (try from 0.5 to 2), `col` to control colour, and `adj` to offset the label. Generally you will want to use `adj=c(-0.2, 0.5)`, which will offset the label to the right of your points.
 ```R
 #add labels
 text(xs, ys, labels=mylabels)
 ```
 
-###polygon()
+### polygon()
 As advertized, creates a polygon based on the verticies provided. Try `border` to change the border colour, `col` to change the fill colour, `lty` to change the border line type, and `lwd` to change the border line width.
 ```R
 #add a polygon between the three points
@@ -76,7 +76,7 @@ polygon(xs, ys, col="green", border="red")
 
 ![output](images/Rplot001.png)
 
-###locator()
+### locator()
 Often it's desirable to place something on the plot that you don't necessarily know the coordinates to. To find these coordinates, we can capture mouse clicks on a plot using the `locator()` function. This will return a `data.frame` of XY coordinates of the points we clicked on. Remember to hit **ESC** when done!
 ```R
 #use locator() to find points (hit ESC when done!)
@@ -84,10 +84,10 @@ locator()
 ```
 It's also possible to capture this to a variable, but you'll eventually want to somehow hardcode these values into your script (because you won't want to click on the map every single time you run your script).
 
-###More Resources
+### More Resources
 There are numerous graphical parameters you can pass to these functions, which are documented in great detail at [Quick-R](http://www.statmethods.net/advgraphs/parameters.html) and in the [R man page for par](https://stat.ethz.ch/R-manual/R-devel/library/graphics/html/par.html). The same parameters will be used when you plot spatial data, so it's worth becoming familiar with how to make points, lines, and polygons the way you'd like them to look.
 
-##Plotting Spatial Data
+## Plotting Spatial Data
 The {rgdal} and {sp} packages provide a powerful engine to render all kinds of geographical data. The data used in this section can be found in the [tutorial notes](rcanvec_tutorial.zip) you've hopefully already downloaded. First, we'll have to load the packages.
 ```R
 #load packages
@@ -115,14 +115,14 @@ text(altacores$lon, altacores$lat, labels=altacores$name, adj=c(-0.2, 0.5), cex=
 ```
 ![output](images/Rplot003.png)
 
-##Using {rosm} to plot basemaps
+## Using {rosm} to plot basemaps
 
 The {rosm} package pulls [Bing Maps](https://www.bing.com/maps/), [Open Street Map](https://www.openstreetmap.org/), and [related maps](http://wiki.openstreetmap.org/wiki/Tile_servers) from the internet, caches them locally, and renders them to provide context to overlying data (your sample sites, etc.). Again, for details, take a look at the [{rosm} manual](https://github.com/paleolimbot/rosm/files/16812/rosm_0.1.2-manual.pdf). First we'll load the packages.
 ```R
 library(prettymapr)
 library(rosm)
 ```
-###Step 1: Find your bounding box
+### Step 1: Find your bounding box
 The {rosm} package plots based on a **bounding box**, or an area that you would like to be visible. There's a few ways to go about doing this, but the easiest way is to visit the [Open Street Maps Export page](http://www.openstreetmap.org/export), zoom to your area of interest, and copy/paste the values into `makebbox(northlat, eastlon, southlat, westlon)` from the {prettymapr} package. You can also use `searchbbox("my location name", source="google")`, also from the {prettymapr} package, which will query google for an appropriate bounding box. You'll notice that the bounding box returned by these methods is just a 2x2 matrix, the same as that returned by bbox() in the {sp} package.
 ```R
 altalake <- makebbox(50.1232, -122.9574, 50.1035, -123.0042)
@@ -137,7 +137,7 @@ bmaps.plot(altalake)
 ![output](images/Rplot004.png)
 ![output](images/Rplot005.png)
 
-###Step 2: Choose your map type and zoom level
+### Step 2: Choose your map type and zoom level
 {rosm} provides access to a number of map types (and even the ability to load your own if you're savvy!), but the most common ones you'll use are `type=osm`, `type="hillshade"`, `type=stamenwatercolor`, and `type=stamenbw` for `osm.plot()` and `type="Aerial"` with `bmaps.plot()`. Look at all of them with `osm.types()` and `bmaps.types()`.
 ```R
 osm.types()
@@ -155,7 +155,7 @@ bmaps.plot(altalake, zoomin=1)
 bmaps.plot(altalake, res=300)
 ```
 
-###Step 3: Add overlays
+### Step 3: Add overlays
 Next we'll use the `lines()`, `polygon()`, `arrows()`, and `text()` functions we went over earlier to draw on top of the map we've just plotted. What's important here is that we specifically have to tell {rosm} that we don't want it to project our data (if you plot with axes=TRUE you'll see that osm.plot() is not plotting in lat/lon. It's plotting in EPSG:3857...which you don't need to understand but may be useful if you do happen to understand it). This sounds intimidating but it's actually very easy:
 ```R
 #plot without projecting
@@ -169,7 +169,7 @@ text(altacores$lon, altacores$lat, labels=altacores$name, adj=c(-0.2, 0.5), cex=
 ```
 ![output](images/Rplot009.png)
 
-###Step 5: Putting it all together
+### Step 4: Putting it all together
 Putting it all together, an example plotting script might like this:
 
 ```R
@@ -201,14 +201,14 @@ prettymap({bmaps.plot(altalake, res=300, project=FALSE, stoponlargerequest=FALSE
 
 There's tons of options for `prettymap()` that let you customize the north arrow, scale bar etc., which you can find in the [{prettymapr} manual](https://github.com/paleolimbot/prettymapr/files/11433/prettymapr_0.1.1-manual.pdf).
 
-##Using {rcanvec} plot basemaps
+## Using {rcanvec} plot basemaps
 The {rcanvec} package provides access to data produced by the Canadian government (the CanVec+ dataset) that is useful for creating basemaps for small-scale locations in Canada. If you're not in Canada, this won't help you much. Similarly, if you're trying to make a map of Ontario, this is not the package for you. The site we've been looking at so far (Alta Lake, near Whistler BC) is a couple of kilometres wide, which is about right in terms of scale. It also may be that you just want to download some data to use in an external GIS (like Arc or QGIS), in which case this package will happily export the data for you. Let's get started by loading the packages:
 ```R
 library(prettymapr)
 library(rcanvec)
 ```
 
-###Step 1: Find your bounding box
+### Step 1: Find your bounding box
 
 The {rcanvec} package plots based on a **bounding box**, or an area that you would like to be visible. There's a few ways to go about doing this, but the easiest way is to visit the [Open Street Maps Export page](http://www.openstreetmap.org/export), zoom to your area of interest, and copy/paste the values into `makebbox(northlat, eastlon, southlat, westlon)` from the {prettymapr} package. You can also use `searchbbox("my location name", source="google")`, also from the {prettymapr} package, which will query google for an appropriate bounding box. You'll notice that the bounding box returned by these methods is just a 2x2 matrix, the same as that returned by bbox() in the {sp} package.
 ```R
@@ -223,7 +223,7 @@ nts(bbox=altalake)
 ```
 If you run this command and your bounding box returns more than 4 mapsheets, you're probably going to want to zoom in. If you're looking to export your data, you'll need to have some idea of what these are.
 
-###Step 2: Preview your map
+### Step 2: Preview your map
 {rcanvec} has a method to quickly plot a bounding box: `canvec.qplot()`. We'll pass our bounding box as the `bbox` argument, and we can use the `layers` argument to customize our layers. If things take too long to plot, you may want to just use `layers="waterbody"` (the "road" layer in particular usually takes a long time to plot). Layers you may want to use are "waterbody", "forest", "river", "contour", "building" and "road". Note that the order you put them in will change the appearance of the map.
 ```R
 canvec.qplot(bbox=altalake)
@@ -232,7 +232,7 @@ canvec.qplot(bbox=altalake, layers=c("waterbody", "river"))
 ![output](images/Rplot012.png)
 ![output](images/Rplot013.png)
 
-###Step 3: Refine your plotting options (optional)
+### Step 3: Refine your plotting options (optional)
 It's possible (but not at all necessary) to load layers individually and plot them manually, giving us more control over the appearance of the map. You'll have to have called `canvec.qplot(bbox=XX)` or `canvec.download(nts(bbox=XX))` before you can load a layer.
 ```R
 waterbody <- canvec.load(nts(bbox=altalake), layerid="waterbody")
@@ -260,7 +260,7 @@ canvec.qplot(bbox=altalake, layers=c("waterbody", "forest", "river"), options=pl
 ```
 ![output](images/Rplot014.png)
 
-###Step 4: Add overlays
+### Step 4: Add overlays
 Next we'll use the `lines()`, `polygon()`, `arrows()`, and `text()` functions we went over earlier to draw on top of the map we've just plotted. Unlike {rosm}, {rcanvec} plots in lat/lon natively, so we don't have to worry about projections.
 ```R
 points(altacores$lon, altacores$lat, pch=15, cex=0.6)
@@ -274,7 +274,7 @@ osm.plot(altalake, type="hillshade", project=FALSE, add=TRUE)
 ```
 ![output](images/Rplot016.png)
 
-###Step 5: Putting it all together
+### Step 5: Putting it all together
 Putting it all together, an example plotting script might like this:
 
 ```
