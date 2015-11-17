@@ -1,6 +1,6 @@
 ---
 title: git-R-done: Effective project management in RStudio
-layout: post
+layout: page
 ---
 
 # git-R-done: Effective project management in RStudio
