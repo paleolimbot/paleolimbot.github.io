@@ -1,5 +1,5 @@
 ---
-title: A guide to creating Canadian basemaps using {rcanvec}, {rosm} and {prettymapr}
+title: Basemaps, eh?
 layout: page
 ---
 
