@@ -55,6 +55,7 @@ arrows(xs[1], ys[1], xs[2], ys[2])
 
 ### lines()
 If you'd like to connect your points with lines, the `lines()` function is for you! In addition to the `col` argument, we can also pass `lwd` (**l**ine **w**i**d**th; try from 0.5 to 2), or `lty` (**l**ine **ty**pe; you can pick [any number from 0 to 6](http://www.statmethods.net/advgraphs/parameters.html)).
+
 ```R
 #add lines from the graveyard to huggins to TAN.
 lines(xs, ys)
