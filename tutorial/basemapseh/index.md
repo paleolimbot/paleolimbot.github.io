@@ -229,6 +229,7 @@ There's tons of options for `prettymap()` that let you customize the north arrow
 
 ## Using {rcanvec} plot basemaps
 The {rcanvec} package provides access to data produced by the Canadian government (the CanVec+ dataset) that is useful for creating basemaps for small-scale locations in Canada. If you're not in Canada, this won't help you much. Similarly, if you're trying to make a map of Ontario, this is not the package for you. The site we've been looking at so far (Alta Lake, near Whistler BC) is a couple of kilometres wide, which is about right in terms of scale. It also may be that you just want to download some data to use in an external GIS (like Arc or QGIS), in which case this package will happily export the data for you. Let's get started by loading the packages:
+
 ```R
 library(prettymapr)
 library(rcanvec)
