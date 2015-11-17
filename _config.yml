@@ -7,7 +7,7 @@
 
 # Site settings
 title: paleolimbot on GitHub
-email: your-email@domain.com
+email: dewey@fishandwhistle.net
 description: > # this means to ignore newlines until "baseurl:"
   Write an awesome description for your new site here. You can edit this
   line in _config.yml. It will appear in your document head meta (for
@@ -18,6 +18,6 @@ twitter_username: freetheheel
 github_username:  paleolimbot
 
 # Build settings
-markdown: kramdown
-kramdown:
-  input: GFM # Enable GitHub Flavored Markdown (fenced code blocks)
+markdown: redcarpet
+#kramdown:
+#  input: GFM # Enable GitHub Flavored Markdown (fenced code blocks)
