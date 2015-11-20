@@ -128,9 +128,40 @@ png("figures/second_lake_sd.png")
 plot_secchi_depths(sddata, "Second Lake")
 dev.off()
 ```
+
 You'll notice a few changes to the script. First, `secchi_depth_data.txt` is now `data/secchi_depth_data.txt`, because it's now in the `data/` directory in our project. Instead of defining `plot_secchi_depths()` in the file, we now `source("scripts/plot_secchi_depths.R")`. In the plotting section, we save our plots to files instead of just looking at them (sometimes I build this into my plotting functions so that if I pass a `filename=` argument it will save, and if I don't it will plot in RStudio). The script is slightly more readable, and it does one thing (produce two plots).
 
-This is an obviously over-the-top example, but the idea is that I'm **separating raw data**, **input**, **re-usable functions**, **project-specific code** and **output**. Choose whichever structure makes the most sense to you, but when it comes time to **share your code using git** it will make life a little bit easier.
+This is an obviously over-the-top example, but the idea is that I'm **separating raw data**, **input**, **re-usable functions**, **project-specific code**, and **output**. Choose whichever structure makes the most sense to you, but when it comes time to **share your code using git** it will make life a little bit easier.
 
 
 ## Use git to backup and share
+
+The whole point of this tutorial is to write code that you can **share** and **use easily in the future**. Now that we have nice, clean *modularized* code, we can use **git** to *create a history of the changes* we make in our project, and **GitHub** to *backup these changes* and make it easy for others (and ourselves) to use the code we've spent hours and hours writing.
+
+### Why use git?
+
+Have you ever saved versions of an R script like "myscript_version1.R", "myscript_version2.R", myscript_final.R" (and inevitably) "myscript_final_real_actually.R"? Before I discovered git I certainly did, because that history is an important history to keep...what worked in the past (in case something you try in the future doesn't). You can save as many times as you want using git without ever having confusing copies of your file. Some projects can have hundreds or thousands of files, making it unweildy to do anything else. The average R script writer isn't in this category, but it's still useful to have that history kept intact. Here's an example (not from R) of a file I worked on extensively for an Android app I wrote...you can see each line of code and why I changed them.
+
+![github blame view](images/2_blameview.png)
+
+### Why use GitHub?
+
+[GitHub](http://github.com/) is a place where git repositories live on the internet. The advantage of having them there is that anybody can access your source code by just sharing a link (instead of emailing a file), making code beyond easy to share and ensuring that if anything happens to your computer, your precious deveopment history is saved. Having lost hours and hours of code to computer malfunctions before, I can assure you that it's incredibly nice to have that history somewhere safe. GitHub also has tons of features for making website and forking projects, but for now all you really have to know is that GitHub backs up your code and all the changes you've ever saved (using git).
+
+### Ok, I'll do it!
+
+Great! Glad to hear it. The first thing you'll need is a [GitHub Account](https://github.com/join), if you don't already have one. The second is the [GitHub Desktop App](https://desktop.github.com/). If you can open up a shell, type `git --version` and get something like this, you're good.
+
+![git test](images/3_testgit.png)
+
+Next we have to tell RStudio where to find git. In the RStudio Options dialog (Tools -> Options on Windows, RSudio -> Preferenes on Mac), you'll need to make sure the "Git executable" is in the right place. In Mac it should be something like `/usr/bin/git`, in Windows it reportedly is `C:/Program Files/Git/bin/git.exe`, although I have no way of verifying this.
+
+![git test](images/4_rstudiogitexec.png)
+
+Next, open up the project you want to start using git with, and go to Tools -> Version Control -> Project Setup. If you've setup Git properly, you should be able to change the "Version control system" to "Git", and initialize a new repository.
+
+![git test](images/5_gitinit.png)
+
+Now you'll see there's a "Git" tab next to "Environment" and "History".
+
+![git test](images/6_gittab.png)
