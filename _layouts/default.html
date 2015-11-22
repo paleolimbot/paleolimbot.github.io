@@ -1,20 +1,68 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% if page.title %}{{ page.title }}{% else %}{{ site.name }}{% endif %}</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,600">
+  <link rel="stylesheet" href="{{ site.baseurl }}/style.css">
+  </head>
+<body>
 
-  {% include head.html %}
+  <div class="container">
+<header class="masthead">        
+  <h1 class="masthead-title">
+    <a href="{{ site.baseurl }}/">{{ site.title }}</a>
+  </h1>
+  <nav class="masthead-nav">
+     {% for my_page in site.pages %}
+       {% if my_page.title %}
+        <a class="page-link" href="{{ my_page.url | prepend: site.baseurl }}">{{ my_page.title }}</a>
+          {% endif %}
+        {% endfor %}
+  </nav>
+</header>
+    {{ content }}
 
-  <body>
+<footer class="site-footer">
 
-    {% include header.html %}
+  <div class="wrapper">
 
-    <div class="page-content">
-      <div class="wrapper">
-        {{ content }}
+    <h2 class="footer-heading">{{ site.title }}</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li>{{ site.title }}</li>
+          <li><a href="mailto:{{ site.email }}">{{ site.email }}</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          {% if site.github_username %}
+          <li>
+            {% include icon-github.html username=site.github_username %}
+          </li>
+          {% endif %}
+
+          {% if site.twitter_username %}
+          <li>
+            {% include icon-twitter.html username=site.twitter_username %}
+          </li>
+          {% endif %}
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>{{ site.description }}</p>
       </div>
     </div>
 
-    {% include footer.html %}
+  </div>
 
-  </body>
+</footer>
 
+  </div>
+</body>
 </html>
