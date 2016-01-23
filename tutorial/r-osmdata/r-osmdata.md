@@ -64,7 +64,7 @@ plot_ways(hways_data)
 plot_nodes(hways_data, pch=19, cex=0.1, add=T) 
 ```
 
-![a](RPlot01.png)
+![](Rplot01.png)
 
 Let's compare this to our original data by plotting the original data in gray.
 
@@ -73,7 +73,7 @@ plot_ways(osmdata, col="gray")
 plot_ways(hways_data, add=T)
 ```
 
-![a](RPlot02.png)
+![](Rplot02.png)
 
 ## Finding the nearest highway
 
