@@ -1,7 +1,7 @@
-----
+---
 layout: page
 title: Open Street Map Data in R
-----
+---
 
 The [Open Street Map](http://www.openstreetmap.org/) project is an incredible resource for those interested in accessing worldwide geographic data, which is often as good or better than that provided by Google Maps. In addition to providing pre-rendered tiles that are acessible [on the web](http://www.openstreetmap.org/), [in R](https://cran.r-project.org/package=rosm), or [in QGIS](https://plugins.qgis.org/plugins/quick_map_services/), Open Street map provides access to the raw data used to create its maps. In R, this package takes the form of the [osmar](https://cran.r-project.org/package=osmar) package.
 
