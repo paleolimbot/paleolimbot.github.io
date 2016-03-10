@@ -1,4 +1,3 @@
-
 ---
 title: DFLite - Easy DataFrames in Python
 layout: page
