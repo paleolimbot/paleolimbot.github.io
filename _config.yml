@@ -17,6 +17,6 @@ twitter_username: freetheheel
 github_username:  paleolimbot
 
 # Build settings
-markdown: redcarpet
-#kramdown:
-#  input: GFM # Enable GitHub Flavored Markdown (fenced code blocks)
+markdown: KramdownPygments
+kramdown:
+  input: GFM # Enable GitHub Flavored Markdown (fenced code blocks)
